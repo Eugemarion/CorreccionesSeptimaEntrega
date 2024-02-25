@@ -1,0 +1,39 @@
+<!-- Dentro del formulario en realtimeproducts.handlebars -->
+<form id="productForm">
+    <!-- Campos del formulario para agregar o eliminar productos -->
+    <button type="button" onclick="addProduct()">Agregar Producto</button>
+    <button type="button" onclick="deleteProduct()">Eliminar Producto</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // Conexión con el servidor de Socket.io
+    const socket = io();
+
+    // Manejo de eventos del socket
+    socket.on('products', (products) => {
+        // Actualizar la lista de productos en la vista en tiempo real
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+
+        products.forEach((product) => {
+            const li = document.createElement('li');
+            li.textContent = `${product.title} - ${product.price}`;
+            productList.appendChild(li);
+        });
+    });
+
+    // Lógica para enviar datos al servidor a través de Socket.io
+    const productForm = document.getElementById('productForm');
+
+    function addProduct() {
+        // Agregar lógica para enviar datos al servidor cuando se agrega un producto
+        // Utiliza Socket.io para emitir el evento y actualizar la vista en tiempo real
+    }
+
+    function deleteProduct() {
+        // Agregar lógica para enviar datos al servidor cuando se elimina un producto
+        // Utiliza Socket.io para emitir el evento y actualizar la vista en tiempo real
+    }
+</script>
+
